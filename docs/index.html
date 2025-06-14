@@ -9,20 +9,31 @@
     <link rel="stylesheet" crossorigin href="/midirouter/assets/main-B7gryabQ.css">
   
   <script>
-    // Handle GitHub Pages SPA redirect
-    (function(l) {
-      if (l.search[1] === '/' ) {
-        var decoded = decodeURIComponent(l.search.slice(1));
-        window.history.replaceState(null, null,
-            l.pathname.slice(0, -1) + decoded + l.hash
-        );
+    // Handle GitHub Pages SPA redirect from 404.html
+    (function() {
+      var params = new URLSearchParams(window.location.search);
+      var redirectPath = params.get('p');
+      
+      if (redirectPath) {
+        // Remove the redirect parameter and navigate to the intended path
+        var newUrl = window.location.origin + '/midirouter/';
+        
+        // If the redirected path starts with /midirouter/, extract the relative path
+        if (redirectPath.startsWith('/midirouter/')) {
+          var relativePath = redirectPath.substring('/midirouter/'.length);
+          if (relativePath && relativePath !== '/') {
+            newUrl += relativePath;
+          }
+        }
+        
+        // Replace the current URL without the redirect parameter
+        window.history.replaceState(null, null, newUrl);
       }
-    }(window.location))
+    })();
   </script>
   </head>
   <body>
     <div id="root"></div>
-    <!-- This is a replit script which adds a banner on the top of the page when opened in development mode outside the replit environment -->
-    <script type="text/javascript" src="https://replit.com/public/js/replit-dev-banner.js"></script>
+    
   </body>
 </html>

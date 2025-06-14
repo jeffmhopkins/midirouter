@@ -5,18 +5,18 @@
   <title>MIDI Routing Platform</title>
   <script>
     // GitHub Pages SPA redirect script
-    // This script takes the current URL and redirects to index.html
-    // while preserving the path as a query parameter for client-side routing
-    
-    var pathSegmentsToKeep = 1; // Keep /midirouter/ as base path
+    // Simplified redirect that works specifically for /midirouter/ subdirectory
     
     var l = window.location;
-    var redirect = l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
-      l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + '/index.html' +
-      (l.search ? '&' + l.search.slice(1) : '') +
-      l.hash;
     
-    window.location.replace(redirect);
+    // For GitHub Pages at /midirouter/, redirect any 404 to the base path
+    var baseUrl = l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') + '/midirouter/';
+    
+    // Store the attempted path for the SPA to handle
+    var attemptedPath = l.pathname + l.search + l.hash;
+    
+    // Redirect to index.html with the path as a parameter
+    window.location.replace(baseUrl + '?p=' + encodeURIComponent(attemptedPath));
   </script>
 </head>
 <body>
