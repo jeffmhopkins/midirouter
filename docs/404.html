@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <script>
+      // Store the attempted path for the SPA router to handle
+      sessionStorage.setItem('redirectPath', location.pathname);
+      // Redirect to the base app URL
+      location.replace('/midirouter/');
+    </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
     <title>MIDI Router</title>
