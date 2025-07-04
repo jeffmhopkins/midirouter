@@ -1,27 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <script>
-      // Store the attempted path for the SPA router to handle
-      sessionStorage.setItem('redirectPath', location.pathname);
-      // Redirect to the base app URL
-      location.replace('/midirouter/');
-    </script>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
-    <title>MIDI Router</title>
-    <meta name="description" content="A visual MIDI routing and processing application" />
-    
-    <!-- Preconnect to Google Fonts for performance -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <script type="module" crossorigin src="/midirouter/assets/index-CtWH4Ymv.js"></script>
-    <link rel="stylesheet" crossorigin href="/midirouter/assets/index-BR974H9Q.css">
-  </head>
-  <body>
-    <div id="root"></div>
-    <!-- This is a replit script which adds a banner on the top of the page when opened in development mode outside the replit environment -->
-    <script type="text/javascript" src="https://replit.com/public/js/replit-dev-banner.js"></script>
-  </body>
+<head>
+  <meta charset="utf-8">
+  <title>MIDI Router</title>
+  <script>
+    // GitHub Pages SPA redirect handler
+    // Captures the current path and redirects to base app
+    (function() {
+      var redirect = sessionStorage.getItem('redirectPath');
+      if (!redirect) {
+        var path = window.location.pathname;
+        if (path && path !== '/midirouter/') {
+          sessionStorage.setItem('redirectPath', path);
+        }
+      }
+      window.location.replace('/midirouter/');
+    })();
+  </script>
+</head>
+<body>
+  <div>Redirecting to MIDI Router...</div>
+</body>
 </html>
